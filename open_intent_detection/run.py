@@ -116,7 +116,7 @@ def run(args, data, model, logger):
 
 
 if __name__ == '__main__':
-    
+    print("main")
     sys.path.append('.')
     args = parse_arguments()
     logger = set_logger(args)
@@ -125,7 +125,12 @@ if __name__ == '__main__':
     logger.info('Parameters Initialization...')
     param = ParamManager(args)
     args = param.args
-
+    
+    import pickle
+    with open('ADB_args.pickle', 'wb') as f:
+        pickle.dump(args, f, pickle.HIGHEST_PROTOCOL)
+    print(args)
+    '''
     logger.debug("="*30+" Params "+"="*30)
     for k in args.keys():
         logger.debug(f"{k}:\t{args[k]}")
@@ -138,5 +143,6 @@ if __name__ == '__main__':
 
     run(args, data, model, logger)
     logger.info('Open Intent Detection Finished...')
+    '''
     
 

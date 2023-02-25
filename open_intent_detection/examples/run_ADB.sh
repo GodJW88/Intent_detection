@@ -17,7 +17,7 @@ do
                 --backbone 'bert' \
                 --config_file_name 'ADB' \
                 --loss_fct 'CrossEntropyLoss' \
-                --gpu_id '0' \
+                --gpu_id '3' \
                 --pretrain \
                 --train \
                 --results_file_name 'results_ADB.csv' \

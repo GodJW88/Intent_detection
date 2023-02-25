@@ -14,7 +14,7 @@ from utils.functions import save_model, restore_model, centroids_cal
 class PretrainManager:
     
     def __init__(self, args, data, model, logger_name = 'Detection'):
-
+        print("pretrainManage")
         self.logger = logging.getLogger(logger_name)
 
         self.model = model.model
@@ -22,6 +22,7 @@ class PretrainManager:
         self.scheduler = model.scheduler
         self.device = model.device
         
+        print(type(data))
         self.train_dataloader = data.dataloader.train_labeled_loader
         self.eval_dataloader = data.dataloader.eval_loader
         self.test_dataloader = data.dataloader.test_loader
@@ -31,16 +32,20 @@ class PretrainManager:
         self.best_eval_score = None
 
         if args.pretrain or (not os.path.exists(args.model_output_dir)):
+            print("pretrainmanager init if")
             self.logger.info('Pre-training Begin...')
 
             if args.backbone == 'bert_disaware':
+                print("pretrainmanager init bert_disaware")
                 self.train_disaware(args, data)
             else:
+                print("pretrainmanager init else bert_disaware")
                 self.train_plain(args, data)
 
             self.logger.info('Pre-training finished...')
                 
         else:
+            print("pretrainmanager init else")
             self.model = restore_model(self.model, args.model_output_dir)
 
     def train_plain(self, args, data):
@@ -54,6 +59,7 @@ class PretrainManager:
             tr_loss = 0
             nb_tr_examples, nb_tr_steps = 0, 0
             
+            print(type(self.train_dataloader))
             for step, batch in enumerate(tqdm(self.train_dataloader, desc="Iteration")):
                 batch = tuple(t.to(self.device) for t in batch)
                 input_ids, input_mask, segment_ids, label_ids = batch

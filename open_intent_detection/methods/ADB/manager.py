@@ -15,7 +15,7 @@ from .pretrain import PretrainManager
 class ADBManager:
     
     def __init__(self, args, data, model, logger_name = 'Detection'):
-
+        print("ADB init")
         self.logger = logging.getLogger(logger_name)
 
         pretrain_model = PretrainManager(args, data, model)
@@ -24,12 +24,15 @@ class ADBManager:
         self.pretrain_best_eval_score = pretrain_model.best_eval_score
 
         if args.pretrain:
+            print("pretrain")
         
             from dataloaders.base import DataManager
             data = DataManager(args, logger_name = None)
+            print("data")
 
             from backbones.base import ModelManager
             model = ModelManager(args, data, logger_name = '') 
+            print("model")
         
         self.device = model.device
         
