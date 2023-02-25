@@ -1,3 +1,8 @@
+# Modification
+
+Read open_intent_detection/ADB_codeReview.ipynb
+
+
 # TEXT Open Intent Recognition (TEXTOIR)
 
 TEXTOIR is the first high-quality Text Open Intent Recognition platform. This repo contains a convenient toolkit with extensible interfaces, integrating a series of state-of-the-art algorithms of two tasks (open intent detection and open intent discovery). We also release the pipeline framework and the visualized platform in the repo [TEXTOIR-DEMO](https://github.com/thuiar/TEXTOIR-DEMO). 
