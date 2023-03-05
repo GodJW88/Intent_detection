@@ -175,7 +175,6 @@ class PretrainManager:
             self.logger.info('Trained models are saved in %s', args.model_output_dir)
             save_model(self.model, args.model_output_dir)       
         
-
     def get_outputs(self, args, data, mode = 'eval', get_feats = False):
         
         if mode == 'eval':

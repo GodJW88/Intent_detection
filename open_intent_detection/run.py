@@ -98,11 +98,13 @@ def set_logger(args):
 def run(args, data, model, logger):
 
     method_manager = method_map[args.method]
+    breakpoint()
     method = method_manager(args, data, model, logger_name = args.logger_name)
     
     if args.train:
         
         logger.info('Training Begin...')
+        breakpoint()
         method.train(args, data)
         logger.info('Training Finished...')
 
@@ -129,8 +131,9 @@ if __name__ == '__main__':
     import pickle
     with open('ADB_args.pickle', 'wb') as f:
         pickle.dump(args, f, pickle.HIGHEST_PROTOCOL)
+    breakpoint()
     print(args)
-    '''
+    
     logger.debug("="*30+" Params "+"="*30)
     for k in args.keys():
         logger.debug(f"{k}:\t{args[k]}")
@@ -143,6 +146,6 @@ if __name__ == '__main__':
 
     run(args, data, model, logger)
     logger.info('Open Intent Detection Finished...')
-    '''
+    
     
 

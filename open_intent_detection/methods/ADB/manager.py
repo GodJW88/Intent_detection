@@ -13,11 +13,12 @@ from utils.functions import restore_model, centroids_cal
 from .pretrain import PretrainManager
 
 class ADBManager:
+    print("start")
     
     def __init__(self, args, data, model, logger_name = 'Detection'):
         print("ADB init")
         self.logger = logging.getLogger(logger_name)
-
+        
         pretrain_model = PretrainManager(args, data, model)
         self.model = pretrain_model.model
         self.centroids = pretrain_model.centroids
@@ -55,6 +56,7 @@ class ADBManager:
             self.centroids = torch.from_numpy(self.centroids).to(self.device)
 
     def train(self, args, data):  
+        breakpoint()
         criterion_boundary = BoundaryLoss(num_labels = data.num_labels, feat_dim = args.feat_dim, device = self.device)
         
         self.delta = F.softplus(criterion_boundary.delta)
