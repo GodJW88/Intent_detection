@@ -141,7 +141,9 @@ if __name__ == '__main__':
 
     logger.info('Data and Model Preparation...')
     data = DataManager(args, logger_name = args.logger_name)
+    breakpoint()
     model = ModelManager(args, data, logger_name = args.logger_name)
+    breakpoint()
 
 
     run(args, data, model, logger)
